@@ -14,6 +14,27 @@ class Juego:
         self.player2 = None
         self.turnoActual = 0# 0 para el turno del player1, 1 para el turno del player2
     
+    def yaMeToca(self, ficha):
+        """
+        Determina si puede tirar el jugador.
+
+        Parámetros:
+
+        ficha: String => Ficha del jugador [ 'X', 'O' ]
+        """
+        if ficha == 'X':
+            if self.turnoActual == 0:
+                return True
+            else:
+                return False
+        elif ficha == 'O':
+            if self.turnoActual == 1:
+                return True
+            else:
+                return False
+        else:
+            return False
+    
     def getBoard(self):
         """
         Regresa el tablero actual.
@@ -36,6 +57,9 @@ class Juego:
 
         False si la casilla está ocupada y un mensaje indicando que no puede tirar ahí.
         """
+        print(self.tablero)
+        print(len(self.tablero))
+        print(len(self.tablero[0]))
         if self.tablero[x][y] != 'X' and self.tablero[x][y] != 'O':
             if self.turnoActual == 0:
                 self.tablero[x][y] = 'X'
@@ -94,7 +118,7 @@ class Juego:
 
         False, None => False indica que el player no se puede tomar, None el caracter que no puede jugar.
         """
-        if self.player1 == None:
+        if self.player2 == None:
             self.player2 = 'O'
             return True, 'O'
         return False, None
@@ -114,19 +138,19 @@ class Juego:
         """
         if self.tablero[0][0] == turno and self.tablero[0][1] == turno and self.tablero[0][2] == turno:
             return True
-        if self.tablero[1][3] == turno and self.tablero[1][4] == turno and self.tablero[1][5] == turno:
+        if self.tablero[1][1] == turno and self.tablero[1][1] == turno and self.tablero[1][2] == turno:
             return True
-        if self.tablero[2][6] == turno and self.tablero[2][7] == turno and self.tablero[2][8] == turno:
+        if self.tablero[2][1] == turno and self.tablero[2][1] == turno and self.tablero[2][2] == turno:
             return True
-        if self.tablero[0][0] == turno and self.tablero[1][3] == turno and self.tablero[2][6] == turno:
+        if self.tablero[0][0] == turno and self.tablero[1][1] == turno and self.tablero[2][1] == turno:
             return True
-        if self.tablero[0][1] == turno and self.tablero[1][4] == turno and self.tablero[2][7] == turno:
+        if self.tablero[0][1] == turno and self.tablero[1][1] == turno and self.tablero[2][1] == turno:
             return True
-        if self.tablero[0][2] == turno and self.tablero[1][5] == turno and self.tablero[2][8] == turno:
+        if self.tablero[0][2] == turno and self.tablero[1][2] == turno and self.tablero[2][2] == turno:
             return True
-        if self.tablero[0][0] == turno and self.tablero[1][4] == turno and self.tablero[2][8] == turno:
+        if self.tablero[0][0] == turno and self.tablero[1][1] == turno and self.tablero[2][2] == turno:
             return True
-        if self.tablero[0][2] == turno and self.tablero[1][4] == turno and self.tablero[2][4] == turno:
+        if self.tablero[0][2] == turno and self.tablero[1][1] == turno and self.tablero[2][1] == turno:
             return True
         return False
         

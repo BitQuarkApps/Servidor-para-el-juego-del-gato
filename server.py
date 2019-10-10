@@ -20,6 +20,7 @@ def setplayer1():
     puedoTomarElTurno, caracterP1 = juego.setPlayer1()
     if puedoTomarElTurno:
         jugador1 = caracterP1
+        print(jugador1)
         return {
             "status": "Success",
             "mensaje": "Eres el jugador 1, te toca la X"
@@ -36,6 +37,7 @@ def setplayer2():
     puedoTomarElTurno, caracterP2 = juego.setPlayer2()
     if puedoTomarElTurno:
         jugador2 = caracterP2
+        print(jugador2)
         return {
             "status": "Success",
             "mensaje": "Eres el jugador 2, te toca la O"
@@ -56,9 +58,17 @@ def getTablero():
 
 @app.route('/tirar/<x>/<y>')
 def tirar(x, y):
-    tiroAceptado,mensaje = juego.tirar(x, y)
+    _x = int(x)
+    _y = int(y)
+    print(_x)
+    print(_y)
+    tiroAceptado,mensaje = juego.tirar(_x, _y)
+    print(f'\n\nTiro aceptado = {tiroAceptado}')
+    print(f'Mensaje = {mensaje}\n')
+
     if tiroAceptado:
         yaGano = juego.determinarGanador(jugador1)
+        print(f'Gano? = {yaGano}\n')
         juego.cambiarTurno()
         return {
             "status": tiroAceptado,
@@ -71,3 +81,10 @@ def tirar(x, y):
             "mensaje": "No puedes tirar aqui",
             "yaGano": False
         }
+
+@app.route('/puedoTirar/<ficha>')
+def puedoTirar(ficha):
+    puede = juego.yaMeToca(ficha)
+    return {
+        "puede": puede
+    }
