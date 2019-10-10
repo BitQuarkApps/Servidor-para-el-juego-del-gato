@@ -6,9 +6,10 @@ class Juego:
     """
     Clase que prepara el juego
     """
-    
+
     def __init__(self):
-        self.tablero = np.empty(shape=(3,3))
+        self.tablero = [[None for _ in range(3)] for _ in range(3)]
+        print(self.tablero)
         self.player1 = None
         self.player2 = None
         self.turnoActual = 0# 0 para el turno del player1, 1 para el turno del player2

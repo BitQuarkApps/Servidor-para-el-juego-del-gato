@@ -2,6 +2,7 @@
 # Desarrollo de Sistemas Inteligentes 9 - A
 from flask import Flask # Dependencia del servidor
 from utils.juego import Juego
+import json
 
 app = Flask(__name__)
 
@@ -47,9 +48,11 @@ def setplayer2():
 
 @app.route('/tablero')
 def getTablero():
-    return {
-        "tablero": juego.getBoard()
-    }
+    print(juego.getBoard())
+    return json.dumps({"tablero": juego.getBoard()})
+    # return {
+    #     "tablero": juego.getBoard().toList()
+    # }
 
 @app.route('/tirar/<x>/<y>')
 def tirar(x, y):
